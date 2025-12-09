@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_color">#8B1538</color>
+    <color name="light_app_color">#730F50</color>
+
+
+    <!-- App Primary / Accent -->
+    <color name="maroon">#8B0029</color>
+    <color name="teal_700">#018786</color>
+    <color name="gray">#757575</color>
+    <color name="red_main">#FF0000</color>   <!-- Use your actual color value -->
+
+    <color name="light_gray">#F2F2F2</color>
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#FFB300</color>
+    <color name="purple">#7E57C2</color>
+    <color name="dark_gray">#555555</color>
+    <color name="dark_brown">#9A5A5B</color>
+
+
+    <color name="primary_maroon">#8B0000</color>
+    <color name="primary_red">#B71C1C</color>
+    <color name="background_gray">#F5F7FA</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_gray">#757575</color>
+    <color name="text_light_gray">#E0E0E0</color>
+    <color name="status_green_text">#2E7D32</color>
+    <color name="status_orange_bg">#FFF3E0</color>
+    <color name="status_orange_text">#EF6C00</color>
+    <color name="dashboard_quick_actions_text">#800080</color>
+    <color name="dashboard_quick_action_card_bg">#FFE5E5</color>
+
+    <color name="status_pending_orange">#FF9800</color>
+
+    <color name="status_red_text">#F44336</color>
+</resources>
+

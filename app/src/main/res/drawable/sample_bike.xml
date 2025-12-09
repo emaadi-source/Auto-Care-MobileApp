@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="80dp"
+    android:viewportWidth="120"
+    android:viewportHeight="80">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#ECECEC"
+        android:pathData="M0,0h120v80h-120z" />
+
+    <!-- Bike wheels -->
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M30,55a10,10 0,1,0 0.1,0zM90,55a10,10 0,1,0 0.1,0z" />
+
+    <!-- Frame -->
+    <path
+        android:strokeColor="#616161"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M30,55 L55,30 L75,55 M55,30 L90,55" />
+
+    <!-- Seat -->
+    <path
+        android:strokeColor="#424242"
+        android:strokeWidth="3"
+        android:pathData="M52,25 L65,25" />
+
+    <!-- Handlebar -->
+    <path
+        android:strokeColor="#424242"
+        android:strokeWidth="3"
+        android:pathData="M55,30 L45,20 L35,20" />
+</vector>

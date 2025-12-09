@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832641512528",
+    "project_id": "autocare-hub-1cf0c",
+    "storage_bucket": "autocare-hub-1cf0c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832641512528:android:3a0f3c2cf88f2e0aa80d55",
+        "android_client_info": {
+          "package_name": "com.haris.semesterproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8YQVr0hw7Vz3g_8ek-HXTpaY7uPGhfzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

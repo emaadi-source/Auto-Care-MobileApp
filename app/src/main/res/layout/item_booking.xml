@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvBookingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oil Change"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBookingGarage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mike's Garage"
+        android:textSize="14sp"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/tvBookingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2024-10-15"
+        android:textSize="12sp"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/tvBookingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginTop="4dp" />
+</LinearLayout>

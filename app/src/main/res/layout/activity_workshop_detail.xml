@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:id="@+id/main"
+    tools:context=".customer.ui.WorkshopDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Toolbar/Header -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/maroon"
+            android:title="Workshop Details"
+            android:titleTextColor="@android:color/white"
+            app:navigationIcon="@drawable/ic_arrow_back" />
+
+        <!-- Workshop Image -->
+        <ImageView
+            android:id="@+id/imgWorkshopDetail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_bike"
+            android:contentDescription="Workshop Image" />
+
+        <!-- Workshop Name -->
+        <TextView
+            android:id="@+id/tvWorkshopNameDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mike's Garage"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="12dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tvWorkshopDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full-service bike workshop providing oil changes, brake repairs, and more."
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="4dp" />
+
+        <!-- Services Offered -->
+        <!-- Services Offered -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Services Offered"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"/>
+
+
+
+        <!-- Buttons for Call, Message, Rate -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:weightSum="3">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCallWorkshop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Book Now"
+                android:icon="@drawable/ic_call"
+                app:iconGravity="textStart"
+                app:backgroundTint="@color/maroon"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="4dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMessageWorkshop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Message"
+                android:icon="@drawable/ic_message"
+                app:iconGravity="textStart"
+                app:backgroundTint="@color/maroon"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRateWorkshop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rate"
+                android:icon="@drawable/ic_star"
+                app:iconGravity="textStart"
+                app:backgroundTint="@color/maroon"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

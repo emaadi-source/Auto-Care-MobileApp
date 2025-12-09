@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Outer location pin -->
+    <path
+        android:fillColor="#8B0029"
+        android:pathData="M12,2C8.13,2 5,5.13 5,9c0,5.25 7,13 7,13s7,-7.75 7,-13c0,-3.87 -3.13,-7 -7,-7zM12,11.5
+            a2.5,2.5 0 1,1 0,-5 2.5,2.5 0 0,1 0,5z" />
+
+    <!-- Inner gear (symbolic mechanic/service icon) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,8a1.5,1.5 0 1,0 0,3 1.5,1.5 0 0,0 0,-3zm3.03,1.03l0.71,-0.71 -0.71,-0.71
+            -0.71,0.71a2.962,2.962 0 0,0 -1.32,-0.55V6h-1v0.77a2.962,2.962 0 0,0 -1.32,0.55L9.68,7.61
+            8.97,6.9l-0.71,0.71 0.71,0.71a2.962,2.962 0 0,0 -0.55,1.32H7v1h0.77a2.962,2.962 0 0,0 0.55,1.32
+            L7.26,12.32l0.71,0.71 0.71,-0.71a2.962,2.962 0 0,0 1.32,0.55V14h1v-0.77a2.962,2.962 0 0,0 1.32,-0.55
+            l0.71,0.71 0.71,-0.71 -0.71,-0.71a2.962,2.962 0 0,0 0.55,-1.32H15v-1h-0.77
+            a2.962,2.962 0 0,0 -0.55,-1.32z" />
+</vector>

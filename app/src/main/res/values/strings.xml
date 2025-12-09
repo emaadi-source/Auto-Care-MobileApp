@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">SemesterProject</string>
+    <string name="menu_icon_description">Menu</string>
+    <string name="notification_icon_description">Notifications</string>
+    <string name="settings_icon_description">Settings</string>
+    <string name="view_bookings_icon_description">View Bookings</string>
+    <string name="manage_services_icon_description">Manage Services</string>
+    <string name="view_earnings_icon_description">View Earnings</string>
+    <string name="workshop_profile_icon_description">Workshop Profile</string>
+
+    <!-- Provider Dashboard -->
+    <string name="welcome_back">Welcome back, %1$s</string>
+    <string name="total_bookings">Total Bookings</string>
+    <string name="this_month">This Month</string>
+    <string name="reviews">%1$d Reviews</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="view_bookings">View Bookings</string>
+    <string name="manage_services">Manage Services</string>
+    <string name="view_earnings">View Earnings</string>
+    <string name="workshop_profile">Workshop Profile</string>
+    <string name="todays_overview">Todays Overview</string>
+
+    <!-- Booking Item -->
+    <string name="booking_name_placeholder">Name</string>
+    <string name="booking_service_placeholder">Service</string>
+    <string name="booking_price_placeholder">Price</string>
+    <string name="booking_status_placeholder">Status</string>
+    <string-array name="categories_array">
+        <item>Engine</item>
+        <item>Brake System</item>
+        <item>Fluids</item>
+        <item>Electrical</item>
+        <item>Maintenance</item>
+        <item>Accessories</item>
+    </string-array>
+
+    <!-- Add Item Bottom Sheet -->
+    <string name="add_new_spare_part_title">Add New Spare Part</string>
+    <string name="name_label">Name</string>
+    <string name="name_hint">Enter name (e.g. Brake Pads)</string>
+    <string name="category_label">Category</string>
+    <string name="price_label">Price (Rs)</string>
+    <string name="price_hint">0</string>
+    <string name="stock_duration_label">Stock / Duration</string>
+    <string name="brand_details_label">Brand / Details</string>
+    <string name="brand_details_hint">Brand name or Description</string>
+    <string name="add_item_button">Add Item</string>
+
+    <!-- Manage Services -->
+    <string name="manage_services_title">Manage Services</string>
+    <string name="manage_services_subtitle">Add and manage your services &amp; spare parts</string>
+    <string name="services_tab">Services</string>
+    <string name="spare_parts_tab">Spare Parts</string>
+    <string name="search_items_hint">Search items...</string>
+    <string name="add_new_spare_part_button">+ Add New Spare Part</string>
+</resources>

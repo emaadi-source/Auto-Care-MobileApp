@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBarRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/maroon"
+            android:title="Rate Workshop"
+            android:titleTextColor="@android:color/white"
+            app:navigationIcon="@drawable/ic_arrow_back" />
+
+        <!-- Workshop Name -->
+        <TextView
+            android:id="@+id/tvWorkshopNameRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mike's Garage"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <!-- Star RatingBar -->
+        <RatingBar
+            android:id="@+id/ratingBarWorkshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:layout_marginTop="12dp"
+            android:isIndicator="false"
+            style="?android:attr/ratingBarStyleIndicator" />
+
+        <!-- Comment input -->
+        <EditText
+            android:id="@+id/etReviewComment"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Write your review..."
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:gravity="top"
+            android:layout_marginTop="16dp" />
+
+        <!-- Submit Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmitRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Rating"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"
+            app:backgroundTint="@color/maroon" />
+    </LinearLayout>
+</ScrollView>
