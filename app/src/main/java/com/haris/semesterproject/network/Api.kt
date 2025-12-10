@@ -62,6 +62,20 @@ interface Api {
         @Field("status") status: String
     ): Call<SimpleResponse>
 
+
+    @FormUrlEncoded
+    @POST("provider/delete_service.php")
+    fun deleteService(
+        @Field("service_id") serviceId: String
+    ): Call<SimpleResponse>
+
+    @FormUrlEncoded
+    @POST("provider/toggle_service.php")
+    fun toggleService(
+        @Field("service_id") serviceId: String,
+        @Field("status") status: Int
+    ): Call<SimpleResponse>
+
     @FormUrlEncoded
     @POST("provider/get_provider_bookings.php")
     fun getProviderBookings(

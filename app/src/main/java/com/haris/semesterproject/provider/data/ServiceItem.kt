@@ -11,7 +11,7 @@ data class ServiceItem(
     val stock: Int? = null,
     // Specific to Services
     val duration: String? = null,
-    var isActive: Boolean = true
+    val is_active: Int = 1
 )
 
 enum class ItemType { SERVICE, PART }

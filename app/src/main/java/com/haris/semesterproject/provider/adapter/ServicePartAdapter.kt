@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Switch
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +13,29 @@ import com.haris.semesterproject.provider.data.ItemType
 import com.haris.semesterproject.provider.data.ServiceItem
 
 class ServicePartAdapter(
-    private var items: List<ServiceItem>,
-    // Callback function: Passing the ServiceItem back when delete is clicked
-    private val onDeleteClick: (ServiceItem) -> Unit
+    private var items: MutableList<ServiceItem>,
+    private val onDeleteClick: (ServiceItem) -> Unit,
+    private val onToggleClick: (ServiceItem, Boolean) -> Unit
 ) : RecyclerView.Adapter<ServicePartAdapter.ViewHolder>() {
 
-    fun updateList(newItems: List<ServiceItem>) {
-        items = newItems
+    private var originalList = mutableListOf<ServiceItem>()
+
+    // Use this instead of updateList to initialize backup list for search
+    fun setData(newItems: List<ServiceItem>) {
+        items = newItems.toMutableList()
+        originalList = newItems.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    fun filter(query: String) {
+        items = if (query.isEmpty()) {
+            originalList.toMutableList()
+        } else {
+            originalList.filter {
+                it.name.contains(query, ignoreCase = true) ||
+                        it.category.contains(query, ignoreCase = true)
+            }.toMutableList()
+        }
         notifyDataSetChanged()
     }
 
@@ -26,11 +43,11 @@ class ServicePartAdapter(
         val name: TextView = view.findViewById(R.id.tvName)
         val brand: TextView = view.findViewById(R.id.tvBrand)
         val price: TextView = view.findViewById(R.id.tvPrice)
-        val meta: TextView = view.findViewById(R.id.tvMeta) // Stock or Duration
+        val meta: TextView = view.findViewById(R.id.tvMeta)
         val chipCategory: TextView = view.findViewById(R.id.chipCategory)
-
-        // Ensure your XML has this ID for the trash icon
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
+        // Ensure XML has Switch with ID 'switchActive'
+        val switchActive: Switch = view.findViewById(R.id.switchActive)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,25 +63,25 @@ class ServicePartAdapter(
         holder.chipCategory.text = item.category
         holder.price.text = "Rs ${item.price.toInt()}"
 
-        // --- LOGIC TO SHOW/HIDE FIELDS BASED ON TYPE ---
+        // Handle Switch without triggering listener during scroll
+        holder.switchActive.setOnCheckedChangeListener(null)
+        holder.switchActive.isChecked = (item.is_active == 1)
+
         if (item.type == ItemType.PART) {
-            // It's a Spare Part
             holder.brand.visibility = View.VISIBLE
             holder.brand.text = "Brand: ${item.brand ?: "N/A"}"
-
             holder.meta.text = "Stock: ${item.stock ?: 0}"
             holder.meta.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.status_green_text))
         } else {
-            // It's a Service
             holder.brand.visibility = View.GONE
-
             holder.meta.text = "Duration: ${item.duration ?: "N/A"}"
             holder.meta.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.text_gray))
         }
 
-        // --- CLICK LISTENER ---
-        holder.btnDelete.setOnClickListener {
-            onDeleteClick(item)
+        holder.btnDelete.setOnClickListener { onDeleteClick(item) }
+
+        holder.switchActive.setOnCheckedChangeListener { _, isChecked ->
+            onToggleClick(item, isChecked)
         }
     }
 

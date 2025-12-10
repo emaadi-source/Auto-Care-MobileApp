@@ -13,60 +13,56 @@
         android:background="@color/white"
         android:padding="16dp">
 
-        <!-- Title -->
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Engine Oil (1L)"
+            android:text="Service Name"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/text_dark"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/switchActive"/>
 
-        <!-- Category Chip -->
-        <TextView
-            android:id="@+id/chipCategory"
-            android:text="Fluids"
-            android:background="@drawable/bg_chip_gray"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="2dp"
-            android:textSize="12sp"
-            android:textColor="@color/text_gray"
-            android:layout_marginStart="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/tvName"
-            app:layout_constraintTop_toTopOf="@id/tvName"
-            app:layout_constraintBottom_toBottomOf="@id/tvName"/>
-
-        <!-- Toggle Switch -->
         <Switch
+            android:id="@+id/switchActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- Brand / Description -->
+        <TextView
+            android:id="@+id/chipCategory"
+            android:text="Category"
+            android:background="@drawable/bg_chip_gray"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:textSize="12sp"
+            android:textColor="@color/text_gray"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName"/>
+
         <TextView
             android:id="@+id/tvBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Brand: Castrol"
+            android:text="Brand"
             android:textSize="13sp"
             android:textColor="@color/text_gray"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName"/>
+            app:layout_constraintTop_toBottomOf="@id/chipCategory"/>
 
-        <!-- Price -->
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rs 380"
+            android:text="Rs 0"
             android:textColor="@color/status_green_text"
             android:textStyle="bold"
             android:textSize="16sp"
@@ -74,19 +70,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvBrand"/>
 
-        <!-- Stock / Duration -->
         <TextView
             android:id="@+id/tvMeta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stock: 25"
+            android:text="Meta Info"
             android:textColor="@color/status_green_text"
             android:textSize="14sp"
             android:layout_marginStart="12dp"
             app:layout_constraintStart_toEndOf="@id/tvPrice"
             app:layout_constraintBottom_toBottomOf="@id/tvPrice"/>
 
-        <!-- Edit/Delete Icons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,17 +88,12 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@android:drawable/ic_menu_edit"
-                app:tint="@color/text_dark"
-                android:layout_marginEnd="12dp"/>
-            <ImageView
                 android:id="@+id/btnDelete"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@android:drawable/ic_menu_delete"
-                app:tint="#D32F2F"/>
+                app:tint="#D32F2F"
+                android:padding="2dp"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
