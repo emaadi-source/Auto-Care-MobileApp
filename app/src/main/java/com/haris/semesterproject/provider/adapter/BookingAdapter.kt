@@ -37,7 +37,7 @@ class BookingAdapter(private var bookings: List<Booking>) :
         // Color coding for status
         when (booking.status.lowercase()) {
             "pending" -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_orange) // Make sure this drawable exists or use color
+                holder.status.setBackgroundResource(R.drawable.bg_chip_orange)
                 holder.status.setTextColor(Color.parseColor("#FF9800"))
             }
             "confirmed" -> {

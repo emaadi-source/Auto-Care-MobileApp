@@ -85,6 +85,7 @@
             <EditText
                 android:id="@+id/et_workshop_name"
                 android:hint="Workshop Name"
+                android:textColor="@color/black"
                 android:background="@android:color/white"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp"
@@ -94,6 +95,7 @@
             <EditText
                 android:id="@+id/et_owner_name"
                 android:hint="Owner Name"
+                android:textColor="@color/black"
                 android:background="@android:color/white"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp"
@@ -106,6 +108,7 @@
                 android:inputType="textEmailAddress"
                 android:background="@android:color/white"
                 android:padding="12dp"
+                android:textColor="@color/black"
                 android:layout_marginBottom="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -113,6 +116,7 @@
             <EditText
                 android:id="@+id/et_contact_phone"
                 android:hint="Contact Phone"
+                android:textColor="@color/black"
                 android:inputType="phone"
                 android:background="@android:color/white"
                 android:padding="12dp"
@@ -123,6 +127,7 @@
             <EditText
                 android:id="@+id/et_description"
                 android:hint="Description"
+                android:textColor="@color/black"
                 android:gravity="top"
                 android:minLines="3"
                 android:background="@android:color/white"
@@ -134,6 +139,7 @@
             <EditText
                 android:id="@+id/et_address"
                 android:hint="Address"
+                android:textColor="@color/black"
                 android:background="@android:color/white"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp"
@@ -147,6 +153,7 @@
                 <EditText
                     android:id="@+id/et_city"
                     android:hint="City"
+                    android:textColor="@color/black"
                     android:background="@android:color/white"
                     android:padding="12dp"
                     android:layout_weight="1"
@@ -156,6 +163,7 @@
                 <EditText
                     android:id="@+id/et_pincode"
                     android:hint="Pincode"
+                    android:textColor="@color/black"
                     android:inputType="number"
                     android:background="@android:color/white"
                     android:padding="12dp"

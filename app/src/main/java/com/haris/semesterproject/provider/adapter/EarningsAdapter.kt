@@ -26,7 +26,7 @@ class EarningsAdapter(private var transactions: List<EarningTransaction>) :
         val item = transactions[position]
         holder.tvCustomer.text = "${item.service} • ${item.customer}"
         holder.tvDate.text = item.date
-        holder.tvAmount.text = "+ ₹${item.amount}"
+        holder.tvAmount.text = "+ Rs ${item.amount}"
     }
 
     override fun getItemCount() = transactions.size

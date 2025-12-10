@@ -30,7 +30,7 @@ class ServiceAdapter(
         val service = services[position]
 
         holder.name.text = service.name
-        holder.price.text = "₹${service.price}"
+        holder.price.text = "Rs ${service.price}"
 
         // Convert service.id to Int safely
         val serviceId = try { service.id.toInt() } catch (e: Exception) { 0 }

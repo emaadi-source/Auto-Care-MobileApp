@@ -9,6 +9,7 @@
     app:cardElevation="2dp">
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="Service • Date"
                 android:textSize="12sp"
-                android:textColor="#666"/>
+                android:textColor="#585858"/>
         </LinearLayout>
 
         <LinearLayout

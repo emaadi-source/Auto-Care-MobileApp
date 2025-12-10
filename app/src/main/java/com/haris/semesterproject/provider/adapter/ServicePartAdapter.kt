@@ -44,7 +44,7 @@ class ServicePartAdapter(
 
         holder.name.text = item.name
         holder.chipCategory.text = item.category
-        holder.price.text = "₹${item.price.toInt()}"
+        holder.price.text = "Rs ${item.price.toInt()}"
 
         // --- LOGIC TO SHOW/HIDE FIELDS BASED ON TYPE ---
         if (item.type == ItemType.PART) {

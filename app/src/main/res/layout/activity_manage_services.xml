@@ -114,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:textColor="@color/white"
             android:backgroundTint="@color/primary_maroon"
             android:text="@string/add_new_spare_part_button"/>
 
