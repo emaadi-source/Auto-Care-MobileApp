@@ -76,7 +76,8 @@ class MyBookingsActivity : AppCompatActivity() {
                                         status = item.status,
                                         date = item.bookingDate,
                                         time = item.bookingTime ?: "",
-                                        address = "${item.vehicleModel ?: ""} ${item.vehicleNumber ?: ""}",
+                                        address = item.address ?: "",  // <-- use address from API
+                                        city = item.city ?: "",        // <-- pass city from API
                                         services = emptyList(),
                                         price = item.totalPrice
                                     )

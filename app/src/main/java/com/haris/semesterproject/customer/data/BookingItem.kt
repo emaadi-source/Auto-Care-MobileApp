@@ -12,5 +12,7 @@ data class BookingItem(
     @SerializedName("workshop_name") val workshopName: String?,
     @SerializedName("vehicle_model") val vehicleModel: String?,
     @SerializedName("vehicle_number") val vehicleNumber: String?,
-    @SerializedName("problem_description") val problemDescription: String?
+    @SerializedName("problem_description") val problemDescription: String?,
+    @SerializedName("address") val address: String?,   // <-- new
+    @SerializedName("city") val city: String?          // <-- new
 )

@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_margin="8dp"
@@ -43,15 +44,7 @@
         android:textColor="@color/dark_gray"
         android:layout_marginBottom="4dp"/>
 
-    <!-- Vehicle -->
-    <TextView
-        android:id="@+id/tvVehicle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Honda • 123"
-        android:textSize="14sp"
-        android:textColor="@color/dark_gray"
-        android:layout_marginBottom="4dp"/>
+
 
 
     <!-- Price -->
@@ -64,4 +57,17 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:gravity="end"/>
+
+    <Button
+        android:id="@+id/navigateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Navigate"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/app_color"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="right">
+
+    </Button>
 </LinearLayout>

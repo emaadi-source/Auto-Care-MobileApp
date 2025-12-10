@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                         // Check if user is not null before accessing properties
                         if (user != null) {
                             Toast.makeText(applicationContext, "Login Successful!", Toast.LENGTH_SHORT).show()
-                            sessionManager.saveUser(user.id, user.full_name, user.role)
+                            sessionManager.saveUser(user.id, user.full_name, user.email,user.role)
                             navigateBasedOnRole(user.role)
                         } else {
                             Toast.makeText(applicationContext, "Error: User data is missing", Toast.LENGTH_SHORT).show()

@@ -79,12 +79,14 @@ class MainActivity : AppCompatActivity() {
                                     status = item.status,
                                     date = item.bookingDate,
                                     time = item.bookingTime ?: "",
-                                    address = "${item.vehicleModel ?: ""} ${item.vehicleNumber ?: ""}",
+                                    address = item.address ?: "",  // <-- use address from API
+                                    city = item.city ?: "",        // <-- pass city from API
                                     services = emptyList(),
                                     price = item.totalPrice
                                 )
                             )
                         }
+
 
                         // Show in RecyclerView
                         rvRecentBookings.adapter = BookingAdapter1(bookingList)
@@ -107,7 +109,6 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    // Load from SQLite when offline
     private fun loadBookingsOffline() {
         Thread {
             val dbHelper = BookingDBHelper(this@MainActivity)
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 if (offlineBookings.isNotEmpty()) {
                     rvRecentBookings.adapter = BookingAdapter1(offlineBookings.toMutableList())
-                    Toast.makeText(this, "Loaded offline bookings", Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(this, "Loaded offline bookings", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "No offline bookings available", Toast.LENGTH_SHORT).show()
                 }

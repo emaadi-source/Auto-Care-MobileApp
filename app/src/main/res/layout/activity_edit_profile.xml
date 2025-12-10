@@ -13,7 +13,7 @@
         android:id="@+id/topAppBarEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/maroon"
+        android:background="@color/app_color"
         android:title="Edit Profile"
         android:titleTextColor="@android:color/white"
         app:navigationIcon="@drawable/ic_arrow_back" />
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Update Profile"
-                app:backgroundTint="@color/maroon"
+                app:backgroundTint="@color/app_color"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
