@@ -8,28 +8,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haris.semesterproject.R
 import com.haris.semesterproject.customer.data.NewBooking
 
-class BookingAdapter(private val bookings: MutableList<NewBooking>) :
-    RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
+class BookingAdapter1(bookings: List<NewBooking>) :
+    RecyclerView.Adapter<BookingAdapter1.BookingViewHolder>() {
+
+    // Only keep bookings that are pending
+    private val pendingBookings = bookings.filter { it.status.lowercase() == "pending" }.toMutableList()
 
     class BookingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val workshopName: TextView = itemView.findViewById(R.id.tvWorkshopName)
         val status: TextView = itemView.findViewById(R.id.tvStatus)
         val date: TextView = itemView.findViewById(R.id.tvDate)
-        val vehicle: TextView = itemView.findViewById(R.id.tvVehicle) // fixed
         val price: TextView = itemView.findViewById(R.id.tvPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_bookingwhole, parent, false)
+            .inflate(R.layout.item_current_status, parent, false)
         return BookingViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
-        val booking = bookings[position]
+        val booking = pendingBookings[position]
         holder.workshopName.text = booking.workshopName
         holder.date.text = "${booking.date} • ${booking.time}"
-        holder.vehicle.text = booking.address
         holder.price.text = booking.price
 
         // Status badge color
@@ -42,6 +43,5 @@ class BookingAdapter(private val bookings: MutableList<NewBooking>) :
         holder.status.setBackgroundResource(statusDrawable)
     }
 
-
-    override fun getItemCount(): Int = bookings.size
+    override fun getItemCount(): Int = pendingBookings.size
 }

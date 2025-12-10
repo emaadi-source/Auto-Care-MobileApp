@@ -22,7 +22,7 @@ class Call_page : AppCompatActivity() {
 
     // Agora credentials (replace with your own)
     private val APP_ID = "32c73f93ca5b455792c129934e6aa241"
-    private val TOKEN ="007eJxTYNC+UjOj/6+T/W2RGJFFEYZs/oLxwTI37n9/e67fLL9SfIkCg7FRsrlxmqVxcqJpkompqbmlUbKhkaWlsUmqWWKikYlh80+jzIZARgZl4TUMjFAI4rMzlKQWlxgaGTMwAAAy1h4g"
+    private val TOKEN ="007eJxTYNih9GdO5wm2xLnFn9/94Enk5T286PRUM07zJ4ZWW9aWM09UYDA2SjY3TrM0Tk40TTIxNTW3NEo2NLK0NDZJNUtMNDIxnLHTMrMhkJHhYuM6RkYGCATx2RlKUotLDI2MGRgArdgf/A=="
     private var CHANNEL_NAME="test123"
     private val TAG = "audio Call"
 
