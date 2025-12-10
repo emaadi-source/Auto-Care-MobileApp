@@ -70,6 +70,13 @@
         <activity
             android:name=".customer.ui.EditProfileActivity"
             android:exported="false" />
+
+        <activity android:name=".provider.ui.ProviderChatActivity"
+            android:exported="false"/>
+        <activity android:name=".provider.ui.ProviderCallActivity"
+            android:exported="false"/>
+        <activity android:name=".provider.ui.ProviderOutgoingCallActivity"
+            android:exported="false"/>
         <activity
             android:name=".customer.ui.ServiceHistoryActivity"
             android:exported="false" />
