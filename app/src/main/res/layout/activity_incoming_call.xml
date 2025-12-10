@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF000000">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tvCallerName"
@@ -18,19 +18,19 @@
         android:id="@+id/btnAcceptCall"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@android:drawable/ic_menu_call"
+        android:src="@drawable/ic_call"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:layout_marginStart="60dp"
         android:layout_alignParentStart="true"
         android:contentDescription="Accept Call"
-        app:tint="@color/app_color" />
+        app:tint="@color/green" />
 
     <ImageView
         android:id="@+id/btnDeclineCall"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:src="@drawable/ic_cancel_call"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:layout_marginEnd="60dp"
