@@ -75,6 +75,8 @@ class WorkshopDetailActivity : AppCompatActivity() {
 
         findViewById<MaterialButton>(R.id.btnRateWorkshop).setOnClickListener {
             val intent = Intent(this, WorkshopRatingActivity::class.java)
+            intent.putExtra("WORKSHOP_NAME", name)
+            intent.putExtra("WORKSHOP_ID", providerId) // <-- pass the workshop ID
             startActivity(intent)
         }
 

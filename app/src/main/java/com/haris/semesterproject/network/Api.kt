@@ -1,5 +1,6 @@
 package com.haris.semesterproject.network
 
+import com.google.gson.annotations.SerializedName
 import com.haris.semesterproject.authentication.data.LoginResponse
 import com.haris.semesterproject.customer.data.BookingResponse
 import com.haris.semesterproject.customer.data.BookingResponseNew
@@ -12,6 +13,7 @@ import com.haris.semesterproject.provider.data.DashboardStatsResponse
 import com.haris.semesterproject.provider.data.ProfileResponse
 import com.haris.semesterproject.provider.data.ServiceListResponse
 import com.haris.semesterproject.provider.data.SimpleResponse
+import com.haris.semesterproject.provider.data.WorkshopProfile
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -91,6 +93,13 @@ interface Api {
     fun getWorkshopProfile(
         @Field("provider_id") providerId: Int
     ): Call<ProfileResponse>
+
+    @FormUrlEncoded
+    @POST("provider/get_profile.php")
+    fun getWorkshopProfile1(
+        @Field("provider_id") providerId: Int
+    ): Call<ProfileResponse1>
+
 
     @FormUrlEncoded
     @POST("provider/update_profile.php")
@@ -209,10 +218,32 @@ interface Api {
         @Field("password") password: String? = null // optional
     ): Call<UpdateProfileResponse>
 
+    @FormUrlEncoded
+    @POST("submit_ratings.php")
+    fun submitWorkshopRating(
+        @Field("customer_id") customerId: Int,
+        @Field("workshop_id") workshopId: Int,
+        @Field("rating") rating: Int,
+        @Field("comment") comment: String
+    ): Call<SubmitRatingResponse>
+
+    data class SubmitRatingResponse(
+        val success: Boolean,
+        val message: String
+    )
+
     data class UpdateProfileResponse(
         val success: Boolean,
         val message: String
     )
+
+    data class ProfileResponse1(
+        @SerializedName("success") val success: Boolean,
+        @SerializedName("workshop_name") val workshop_name: String,
+        @SerializedName("message") val message: String? = null
+    )
+
+
 
 
     data class SimpleResponse1(
