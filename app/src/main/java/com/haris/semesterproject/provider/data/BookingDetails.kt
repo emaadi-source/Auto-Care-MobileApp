@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class BookingDetails(
     val id: Int,
+    val customer_id: Int,
     val booking_date: String,
     val total: String,
     var status: String, // Changed to 'var' so we can update it locally

@@ -225,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Call Customer"
+                        android:text="Contact Customer"
                         android:textColor="@color/black"
                         app:icon="@drawable/ic_phone_outline"
                         app:iconTint="@color/black" />

@@ -40,8 +40,9 @@ class BookingDetailActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener { finish() }
 
         binding.btnCallCustomer.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${booking?.customer_phone}")
+            val intent = Intent(this, ProviderChatActivity::class.java) // OR OutgoingCallActivity
+            intent.putExtra("customer_id", booking?.customer_id) // Ensure this field exists in BookingDetails
+            intent.putExtra("customer_name", booking?.customer_name)
             startActivity(intent)
         }
 
