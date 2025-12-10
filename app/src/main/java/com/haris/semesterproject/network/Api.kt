@@ -200,6 +200,19 @@ interface Api {
         @Query("customer_id") customerId: Int
     ): Call<BookingResponseNew>
 
+    @FormUrlEncoded
+    @POST("update_user.php")
+    fun updateUserProfile(
+        @Field("user_id") userId: Int,
+        @Field("full_name") fullName: String,
+        @Field("email") email: String,
+        @Field("password") password: String? = null // optional
+    ): Call<UpdateProfileResponse>
+
+    data class UpdateProfileResponse(
+        val success: Boolean,
+        val message: String
+    )
 
 
     data class SimpleResponse1(
