@@ -16,15 +16,7 @@ class MyProfileActivity : AppCompatActivity() {
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-        val btnServiceHistory = findViewById<MaterialButton>(R.id.btnServiceHistory)
-        val btnMyBookings = findViewById<MaterialButton>(R.id.btnMyBookings)
 
-        btnServiceHistory.setOnClickListener {
-            startActivity(Intent(this, ServiceHistoryActivity::class.java))
-        }
 
-        btnMyBookings.setOnClickListener {
-            startActivity(Intent(this, MyBookingsActivity::class.java))
-        }
     }
 }

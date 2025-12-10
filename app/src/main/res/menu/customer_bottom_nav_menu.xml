@@ -13,8 +13,8 @@
         android:title="Bookings" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:icon="@drawable/ic_service_wrench"
+        android:title="Terms" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"

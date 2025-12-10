@@ -12,7 +12,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haris.semesterproject.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haris.semesterproject.authentication.LoginActivity
+import com.haris.semesterproject.customer.adapter.BookingAdapter
+import com.haris.semesterproject.customer.adapter.BookingAdapter1
+import com.haris.semesterproject.customer.data.BookingResponseNew
+import com.haris.semesterproject.customer.data.NewBooking
+import com.haris.semesterproject.customer.helper.BookingDBHelper
+import com.haris.semesterproject.network.RetrofitClient
 import com.haris.semesterproject.utils.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvCurrentStatus = findViewById(R.id.rvCurrentStatus)
         rvRecentBookings = findViewById(R.id.rvRecentBookings)
         bottomNav = findViewById(R.id.bottomNav)
         var logbtn= findViewById<TextView>(R.id.tvWelcome)
@@ -40,18 +48,90 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        setupRecyclerViews()
+        rvRecentBookings = findViewById(R.id.rvRecentBookings)
+        rvRecentBookings.setHasFixedSize(false)
+        rvRecentBookings.layoutManager = LinearLayoutManager(this)
+
+
+        loadCustomerBookings()  // Load bookings from API
         setupBottomNav()
 
         updateGridIcons()
         setupGridClickListeners()
     }
 
-    private fun setupRecyclerViews() {
-        rvCurrentStatus.layoutManager = LinearLayoutManager(this)
-        rvRecentBookings.layoutManager = LinearLayoutManager(this)
-        // Attach adapters if needed
+    private fun loadCustomerBookings() {
+        val session = SessionManager(this)
+        val customerId = session.fetchUserId().toInt()
+
+        RetrofitClient.api.getCustomerBookings(customerId)
+            .enqueue(object : Callback<BookingResponseNew> {
+                override fun onResponse(call: Call<BookingResponseNew>, response: Response<BookingResponseNew>) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        val items = response.body()!!.bookings
+                        val bookingList = mutableListOf<NewBooking>()
+
+                        for (item in items) {
+                            bookingList.add(
+                                NewBooking(
+                                    bookingId = item.bookingId,
+                                    workshopName = item.workshopName ?: "Unknown Workshop",
+                                    status = item.status,
+                                    date = item.bookingDate,
+                                    time = item.bookingTime ?: "",
+                                    address = "${item.vehicleModel ?: ""} ${item.vehicleNumber ?: ""}",
+                                    services = emptyList(),
+                                    price = item.totalPrice
+                                )
+                            )
+                        }
+
+                        // Show in RecyclerView
+                        rvRecentBookings.adapter = BookingAdapter1(bookingList)
+                        rvRecentBookings.setExpanded()
+                        loadBookingsOffline()
+                        // Save to SQLite for offline
+                        Thread {
+                            val dbHelper = BookingDBHelper(this@MainActivity)
+                            dbHelper.insertBookings(bookingList)
+                        }.start()
+
+                    } else {
+                        loadBookingsOffline()
+                    }
+                }
+
+                override fun onFailure(call: Call<BookingResponseNew>, t: Throwable) {
+                    loadBookingsOffline()
+                }
+            })
     }
+
+    // Load from SQLite when offline
+    private fun loadBookingsOffline() {
+        Thread {
+            val dbHelper = BookingDBHelper(this@MainActivity)
+            val offlineBookings = dbHelper.getAllBookings()
+            runOnUiThread {
+                if (offlineBookings.isNotEmpty()) {
+                    rvRecentBookings.adapter = BookingAdapter1(offlineBookings.toMutableList())
+                    Toast.makeText(this, "Loaded offline bookings", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "No offline bookings available", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.start()
+    }
+    fun RecyclerView.setExpanded() {
+        val adapter = this.adapter
+        if (adapter != null) {
+            val params = this.layoutParams
+            params.height = adapter.itemCount * 1000 // estimate item height
+            this.layoutParams = params
+        }
+    }
+
+
 
     private fun setupBottomNav() {
         bottomNav.setOnItemSelectedListener { item ->
@@ -102,8 +182,8 @@ class MainActivity : AppCompatActivity() {
         btnMyBookings.findViewById<TextView>(R.id.tvTitle).text = "My Bookings"
 
         btnServiceHistory.findViewById<ImageView>(R.id.ivIcon)
-            .setImageResource(R.drawable.ic_history)
-        btnServiceHistory.findViewById<TextView>(R.id.tvTitle).text = "Service History"
+            .setImageResource(R.drawable.ic_service_wrench)
+        btnServiceHistory.findViewById<TextView>(R.id.tvTitle).text = "Terms & Conditions"
 
         btnRateService.findViewById<ImageView>(R.id.ivIcon)
             .setImageResource(R.drawable.ic_settings)
@@ -127,8 +207,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnServiceHistory.setOnClickListener {
-            startActivity(Intent(this, ServiceHistoryActivity::class.java)) // Make sure this activity exists
+            startActivity(Intent(this, MyProfileActivity::class.java))
         }
+
+
 
         btnSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java)) // Make sure this activity exists

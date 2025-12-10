@@ -7,10 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haris.semesterproject.customer.adapter.BookingAdapter
-import com.haris.semesterproject.customer.data.Booking
 import com.haris.semesterproject.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
+import com.haris.semesterproject.customer.adapter.BookingAdapter1
+import com.haris.semesterproject.customer.data.BookingResponseNew
+import com.haris.semesterproject.customer.data.NewBooking
+import com.haris.semesterproject.customer.helper.BookingDBHelper
+import com.haris.semesterproject.network.RetrofitClient
+import com.haris.semesterproject.utils.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+
 
 class MyBookingsActivity : AppCompatActivity() {
 
@@ -26,30 +36,102 @@ class MyBookingsActivity : AppCompatActivity() {
 
         rvBookings = findViewById(R.id.rvBookings)
         btnBookNew = findViewById(R.id.btnBookNew)
-        btnHistory = findViewById(R.id.btnHistory)
 
-        val bookings = listOf(
-            Booking("BK001", "Mike's Garage", "Confirmed", "2024-10-15", "10:00 AM", "123 Workshop Street, City", listOf("Oil Change", "Brake Check"), "₹650"),
-            Booking("BK002", "Speedy Service", "Pending", "2024-10-20", "02:00 PM", "456 Service Road, City", listOf("Chain Cleaning", "Battery Check"), "₹250")
-        )
 
         rvBookings.layoutManager = LinearLayoutManager(this)
-        rvBookings.adapter = BookingAdapter(bookings)
 
         btnBookNew.setOnClickListener {
             startActivity(Intent(this, FindWorkshopActivity::class.java))
         }
 
-        btnHistory.setOnClickListener {
-            startActivity(Intent(this, ServiceHistoryActivity::class.java))
-        }
         bottomNav = findViewById(R.id.bottomNav)
         bottomNav.selectedItemId = R.id.nav_bookings
 
-
+        loadCustomerBookings()
 
         setupBottomNav()
     }
+    private fun loadCustomerBookings() {
+        val session = SessionManager(this)
+        val customerId = session.fetchUserId().toInt()
+        val dbHelper = BookingDBHelper(this)
+
+        if (isOnline()) {
+            // Online mode: fetch from API
+            RetrofitClient.api.getCustomerBookings(customerId)
+                .enqueue(object : Callback<BookingResponseNew> {
+                    override fun onResponse(
+                        call: Call<BookingResponseNew>,
+                        response: Response<BookingResponseNew>
+                    ) {
+                        if (response.isSuccessful && response.body()?.success == true) {
+                            val items = response.body()!!.bookings
+                            val bookingList = mutableListOf<NewBooking>()
+
+                            for (item in items) {
+                                bookingList.add(
+                                    NewBooking(
+                                        bookingId = item.bookingId,
+                                        workshopName = item.workshopName ?: "Unknown Workshop",
+                                        status = item.status,
+                                        date = item.bookingDate,
+                                        time = item.bookingTime ?: "",
+                                        address = "${item.vehicleModel ?: ""} ${item.vehicleNumber ?: ""}",
+                                        services = emptyList(),
+                                        price = item.totalPrice
+                                    )
+                                )
+                            }
+
+                            // Display online bookings
+                            rvBookings.adapter = BookingAdapter(bookingList)
+
+                            // Save online bookings to SQLite for offline use
+                            Thread {
+                                dbHelper.insertBookings(bookingList)
+                            }.start()
+
+                        } else {
+                            // API returned no bookings → fallback to offline
+                            loadBookingsOffline(dbHelper)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BookingResponseNew>, t: Throwable) {
+                        // API failed → fallback to offline
+                        loadBookingsOffline(dbHelper)
+                    }
+                })
+        } else {
+            // Offline mode: load from SQLite
+            loadBookingsOffline(dbHelper)
+        }
+    }
+
+    // Load bookings from SQLite (offline)
+    private fun loadBookingsOffline(dbHelper: BookingDBHelper) {
+        Thread {
+            val offlineBookings = dbHelper.getAllBookings()
+            runOnUiThread {
+                if (offlineBookings.isNotEmpty()) {
+                    rvBookings.adapter = BookingAdapter(offlineBookings.toMutableList())
+                    Toast.makeText(this, "Loaded offline bookings", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "No bookings available offline", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.start()
+    }
+
+    // Utility function to check network
+    private fun isOnline(): Boolean {
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as android.net.ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
+    }
+
+
+
     private fun setupBottomNav() {
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {

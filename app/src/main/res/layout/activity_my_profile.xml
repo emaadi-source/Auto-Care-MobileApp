@@ -27,125 +27,230 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="16dp">
 
-            <!-- Vehicle Info -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@drawable/card_bg"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TVS Apache RTR 160"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Reg: MH 12 CD 5678" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Last Service: 2024-09-28" />
-            </LinearLayout>
-
-            <!-- Achievements -->
+            <!-- Main Heading -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Achievements"
+                android:text="Terms &amp; Conditions &amp; Privacy Policy"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp" />
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:textColor="@android:color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_bg"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="🏅 Regular Customer — 10+ services completed" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="⭐ Review Master — Left 5+ helpful reviews" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="⏰ Early Bird — Always on time for appointments" />
-            </LinearLayout>
-
-            <!-- Recent Activity -->
+            <!-- Intro -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recent Activity"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
+                android:text="Welcome to the AutoCare App. By using this application, you agree to the Terms &amp; Conditions and acknowledge the Privacy Policy described below. Please read carefully before proceeding."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
 
-            <LinearLayout
+            <!-- Section 1 -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_bg"
-                android:padding="12dp">
+                android:text="1. Introduction"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="• Completed service — Mike's Garage (2024-10-05)" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This app serves as a platform connecting customers with independent automobile service stations. We do not own or control these service centers. Our role is limited to facilitating service bookings, communication, and scheduling."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="• Left 5-star review — Speedy Service (2024-09-28)" />
+            <!-- Section 2 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. User Responsibilities"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="• Booked appointment — Pro Bike Care (2024-09-15)" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Provide accurate personal and vehicle information.\n• Maintain confidentiality of your account credentials.\n• Report unauthorized account activity immediately.\n• Avoid misuse, false bookings, or abusive behavior toward service providers. Violations may lead to account suspension."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 3 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Booking and Service Fulfillment"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All bookings are forwarded directly to the selected service station. The service provider is solely responsible for service delivery, quality, workmanship, timelines, and pricing. We act only as intermediaries and are not liable for service outcomes, delays, or damages."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 4 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Payments and Transactions"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Service centers may offer online or offline payment options. Online payments are handled by third-party gateways with their respective security protocols. We do not store card details. Refunds, if applicable, follow the service provider’s refund policy. Cancellation charges may apply after booking confirmation."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 5 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. Pricing and Offers"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pricing is determined by the service providers and may vary depending on vehicle type, service scope, or additional repairs. Offers and coupons are subject to availability and may change without notice."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 6 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. Limitation of Liability"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We are not responsible for: service delays, poor workmanship, personal injury, property damage, or negligence by service providers. Our role is limited to maintaining a functional platform."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 7 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. Intellectual Property"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All logos, designs, images, and app content are protected. Reproduction or distribution without permission is prohibited."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 8 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. Privacy Policy"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We collect your name, number, location, and vehicle details only to process bookings, send updates, and enhance user experience. Your data is not sold or shared with unrelated third parties. It is shared only with selected service providers for service fulfillment."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 9 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9. Data Security"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We use standard security measures to safeguard your information. However, no digital system is completely risk-free. By using the app, you acknowledge these inherent risks."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 10 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10. Location Access"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The app may request your location to show nearby service stations. You can disable location permissions, but some features may not function properly."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 11 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11. Modification of Terms"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We may update these Terms &amp; Conditions at any time. Updates become effective immediately upon posting. Continued app usage constitutes acceptance of revised terms."
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Section 12 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12. Contact &amp; Support"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="For support, please reach out through the 'Help &amp; Support' section in the app. We typically respond within 24–48 hours."
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Agreement Footer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="By using this application, you confirm that you have read, understood, and agreed to all the Terms &amp; Conditions and Privacy Policy listed above."
+                android:textStyle="italic"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Buttons -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnServiceHistory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Service History"
-            app:backgroundTint="@color/maroon"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnMyBookings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="My Bookings"
-            app:backgroundTint="@color/maroon"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
 </LinearLayout>

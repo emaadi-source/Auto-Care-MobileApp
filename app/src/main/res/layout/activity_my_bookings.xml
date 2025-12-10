@@ -29,19 +29,7 @@
             android:layout_weight="1"
             android:text="Book New Service"
             android:textColor="@android:color/white"
-            app:backgroundTint="@color/maroon"
-            app:cornerRadius="8dp"
-            app:iconTint="@android:color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnHistory"
-            android:layout_marginLeft="10dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Service History"
-            android:textColor="@android:color/white"
-            app:backgroundTint="@color/maroon"
+            app:backgroundTint="@color/app_color"
             app:cornerRadius="8dp"
             app:iconTint="@android:color/white" />
 

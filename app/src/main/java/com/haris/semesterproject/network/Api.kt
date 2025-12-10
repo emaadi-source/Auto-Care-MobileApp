@@ -2,6 +2,7 @@ package com.haris.semesterproject.network
 
 import com.haris.semesterproject.authentication.data.LoginResponse
 import com.haris.semesterproject.customer.data.BookingResponse
+import com.haris.semesterproject.customer.data.BookingResponseNew
 import com.haris.semesterproject.customer.data.ChatMessage
 import com.haris.semesterproject.customer.data.Service
 import com.haris.semesterproject.customer.data.ServiceWhole
@@ -193,6 +194,13 @@ interface Api {
     ): Call<BookingResponse>
     // Note: Use BookingResponse if you created the CustomerModels.kt file,
     // otherwise change back to SimpleResponse1 if you kept it inside Api.kt
+
+    @GET("get_bookings.php")
+    fun getCustomerBookings(
+        @Query("customer_id") customerId: Int
+    ): Call<BookingResponseNew>
+
+
 
     data class SimpleResponse1(
         val success: Boolean,
