@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.haris.semesterproject.databinding.ActivityLoginBinding
 import com.haris.semesterproject.authentication.data.LoginResponse
 import com.haris.semesterproject.customer.ui.MainActivity
@@ -51,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             performLogin()
         }
+        saveFCMToken()
     }
 
     private fun performLogin() {
@@ -108,5 +111,16 @@ class LoginActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    private fun saveFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+            val providerId = SessionManager(this).fetchUserId()
+
+            FirebaseFirestore.getInstance()
+                .collection("providers")
+                .document(providerId.toString())
+                .update("fcmToken", token)
+        }
     }
 }

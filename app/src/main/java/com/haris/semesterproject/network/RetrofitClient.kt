@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    // IMPORTANT: REPLACE THIS URL DEPENDING ON WHERE YOU RUN THE APP
     const val BASE_URL = "http://192.168.1.10/semester_api/"
 
     val retrofit by lazy {

@@ -19,6 +19,7 @@ import com.haris.semesterproject.customer.data.BookingService
 import com.haris.semesterproject.customer.data.ServiceWhole
 import com.haris.semesterproject.network.RetrofitClient
 import com.haris.semesterproject.utils.SessionManager
+import com.google.firebase.firestore.FirebaseFirestore  // <-- IMPORTANT
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -61,8 +62,7 @@ class BookingActivity : AppCompatActivity() {
         providerId = intent.getIntExtra("providerId", 0)
         currentUserId = SessionManager(this).fetchUserId()
 
-        // Validation Check on Load
-        if (providerId == 0 || currentUserId == -1 || currentUserId == 0) {
+        if (providerId == 0 || currentUserId <= 0) {
             Toast.makeText(this, "Error: Invalid User or Provider ID", Toast.LENGTH_LONG).show()
             finish()
             return
@@ -73,42 +73,65 @@ class BookingActivity : AppCompatActivity() {
         rvServices.layoutManager = LinearLayoutManager(this)
         rvServices.adapter = adapter
 
-        // Listeners
         tvSelectedDate.setOnClickListener { openDatePicker() }
         btnConfirm.setOnClickListener { confirmBooking() }
 
         loadServices()
     }
 
+    private fun pushBookingToFirebase(providerId: Int, model: String, number: String, date: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        val booking = mapOf(
+            "providerId" to providerId,
+            "customerId" to currentUserId,
+            "vehicleModel" to model,
+            "vehicleNumber" to number,
+            "date" to date,
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        db.collection("bookings")
+            .add(booking)
+            .addOnSuccessListener {
+                Log.d("FirebaseBooking", "Booking uploaded to Firebase ✔")
+            }
+            .addOnFailureListener {
+                Log.e("FirebaseBooking", "Failed to upload booking ❌", it)
+            }
+    }
+
     private fun openDatePicker() {
         val calendar = Calendar.getInstance()
         DatePickerDialog(this, { _, year, month, day ->
             val cal = Calendar.getInstance().apply { set(year, month, day) }
-            // This format is perfect for MySQL
             selectedDateApi = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(cal.time)
 
-            // This format is for the User to see
             val displayDate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(cal.time)
             tvSelectedDate.text = "Date: $displayDate"
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
     private fun loadServices() {
-        RetrofitClient.api.getServicesForCustomer(providerId).enqueue(object : Callback<List<ServiceWhole>> {
-            override fun onResponse(call: Call<List<ServiceWhole>>, response: Response<List<ServiceWhole>>) {
-                if (response.isSuccessful && response.body() != null) {
-                    servicesList.clear()
-                    servicesList.addAll(response.body()!!)
-                    adapter.notifyDataSetChanged()
-                } else {
-                    Toast.makeText(this@BookingActivity, "Failed to load services", Toast.LENGTH_SHORT).show()
+        RetrofitClient.api.getServicesForCustomer(providerId)
+            .enqueue(object : Callback<List<ServiceWhole>> {
+                override fun onResponse(
+                    call: Call<List<ServiceWhole>>,
+                    response: Response<List<ServiceWhole>>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+                        servicesList.clear()
+                        servicesList.addAll(response.body()!!)
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        Toast.makeText(this@BookingActivity, "Failed to load services", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<List<ServiceWhole>>, t: Throwable) {
-                Toast.makeText(this@BookingActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<List<ServiceWhole>>, t: Throwable) {
+                    Toast.makeText(this@BookingActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
     private fun updateTotalPrice() {
@@ -119,7 +142,6 @@ class BookingActivity : AppCompatActivity() {
         val model = etVehicleModel.text.toString().trim()
         val number = etVehicleNumber.text.toString().trim()
 
-        // 1. Validate Inputs
         if (selectedDateApi.isEmpty()) {
             Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()
             return
@@ -133,7 +155,6 @@ class BookingActivity : AppCompatActivity() {
             return
         }
 
-        // 2. Prepare Data
         val serviceArray = selectedServices.map { BookingService(it.key, it.value) }
         val json = Gson().toJson(serviceArray)
         val totalPrice = selectedServices.values.sum()
@@ -141,7 +162,6 @@ class BookingActivity : AppCompatActivity() {
         btnConfirm.isEnabled = false
         btnConfirm.text = "Processing..."
 
-        // 3. API Call
         RetrofitClient.api.createBooking(
             customerId = currentUserId,
             providerId = providerId,
@@ -151,6 +171,7 @@ class BookingActivity : AppCompatActivity() {
             vehicleModel = model,
             vehicleNumber = number
         ).enqueue(object : Callback<BookingResponse> {
+
             override fun onResponse(call: Call<BookingResponse>, response: Response<BookingResponse>) {
                 btnConfirm.isEnabled = true
                 btnConfirm.text = "Confirm Booking"
@@ -158,9 +179,13 @@ class BookingActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val body = response.body()!!
                     Toast.makeText(this@BookingActivity, body.message, Toast.LENGTH_LONG).show()
-                    if (body.success) finish()
+
+                    if (body.success) {
+                        pushBookingToFirebase(providerId, model, number, selectedDateApi)
+                        //sendBookingNotification(providerId, model, number)
+                        finish()
+                    }
                 } else {
-                    // --- IMPROVED ERROR DEBUGGING ---
                     try {
                         val errorBody = response.errorBody()?.string()
                         Log.e("BookingError", "Code: ${response.code()}, Error: $errorBody")
@@ -168,8 +193,7 @@ class BookingActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         Toast.makeText(this@BookingActivity, "Server Error: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
-                }
-            }
+                }            }
 
             override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
                 btnConfirm.isEnabled = true
@@ -179,4 +203,5 @@ class BookingActivity : AppCompatActivity() {
             }
         })
     }
+
 }

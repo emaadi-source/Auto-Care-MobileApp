@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.androidx.gridlayout)
+    implementation(libs.firebase.messaging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -74,4 +75,13 @@ dependencies {
     // 🔹 Google Maps SDK
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    // Firebase BoM (manages versions automatically)
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+
+    // Firebase Modules
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-messaging")
+
 }
