@@ -142,6 +142,14 @@ AutoCare Hub modernizes bike maintenance management by creating a transparent an
 
 ---
 
+## 🎥 Video Tutorial
+
+🎬 Watch the full AutoCare Hub walkthrough:
+
+🔗 **[▶️ Watch on Google Drive](https://drive.google.com/file/d/1lWX7Fo93SGEl0LE5V1O_tPtCSmBj30jp/preview)**
+
+---
+
 ## 📄 License
 
 This project is developed for **academic purposes** as part of a Mobile Application Development course.
