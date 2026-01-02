@@ -20,16 +20,6 @@ The app is built using **Android Studio (Kotlin/XML)** for the mobile applicatio
 
 ---
 
-## 👥 Team Information
-
-**Team Name:** FixIt Force
-
-* **Muhammad Haris** – i230814_B
-* **Muhammad Immad** – i230026_B
-* **Muhammad Ali** – i230008_A
-
----
-
 ## 🎯 Objectives
 
 * Browse and compare multiple bike workshops
